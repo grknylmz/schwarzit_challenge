@@ -1,0 +1,16 @@
+<mvc:View controllerName="zcprod.zcprod.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" showFooter="true"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<Title text="{name}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<Image src="{image_val}" width="30em" decorative="false"/>
+			<Text text="Description: {description}"/>
+			<ObjectNumber number="Price: { path: 'price', formatter: '.formatter.numberUnit' }"/>
+		</semantic:headerContent>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="Add to Cart" press=".onAddToCart"/>
+		</semantic:positiveAction>
+	</semantic:SemanticPage>
+</mvc:View>

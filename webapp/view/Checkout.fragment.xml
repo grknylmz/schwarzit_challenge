@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog id="checkoutDialog" title="Shopping Cart">
+		<List items="{ path : 'cartProducts>/cartEntries', sorter : { path : 'name', descending : false } }">
+			<items>
+				<ObjectListItem intro="{cartProducts>Quantity} x" title="{cartProducts>name}"
+					number="{ path : 'cartProducts>price', formatter : '.formatter.price' }" numberUnit="EUR" press=".onEntryListPress" iconDensityAware="false"></ObjectListItem>
+			</items>
+		</List>
+		<VBox class="sapUiSmallMargin">
+			<f:SimpleForm id="SimpleFormChange471" editable="true" layout="ResponsiveGridLayout" title="User Details">
+				<f:content>
+					<Label text="User Name"/>
+					<Input id="username"/>
+					<Label text="First Name"/>
+					<Input id="name"/>
+					<Label text="Last Name"/>
+					<Input id="lastName"></Input>
+					<Label text="Credit Card Number"/>
+					<Input id="cardnumber"></Input>
+					<Button id="submit" text="Submit" press=".onSubmit"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,51 @@
+<mvc:View controllerName="zcprod.zcprod.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>worklistTitle}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<Table id="table" width="auto" items="{ path: '/ZCPRODUCTS_CDS', sorter: { path: 'name', descending: false } }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished" growingThreshold="40">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}" level="H3"/>
+						<ToolbarSpacer/>
+						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch">
+							<layoutData>
+								<OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+						<Input id="priceMin" type="Text" placeholder="Min"/>
+						<Input id="priceMax" type="Text" placeholder="Max"/>
+						<Button id="filterButton" text="Search" press=".onSearch"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="picColumn">
+						<Text text="{i18n>tablePicColumnTitle}" id="picColumnTitle"/>
+					</Column>
+					<Column id="nameColumn">
+						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					</Column>
+					<Column id="unitNumberColumn" hAlign="End">
+						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press=".onPress">
+						<cells>
+							<Image src="{image_val}" width="10em" decorative="false"/>
+							<ObjectIdentifier title="{name}" text="{description}"/>
+							<ObjectNumber state="{ path: 'price', formatter: '.formatter.priceColorizer' }"
+								number="{ path: 'price', formatter: '.formatter.numberUnit' }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="Checkout" press=".onPressCheckout"/>
+		</semantic:positiveAction>
+	</semantic:SemanticPage>
+</mvc:View>
